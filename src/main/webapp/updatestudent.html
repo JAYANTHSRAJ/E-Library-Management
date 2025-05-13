@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Operations</title>
+    <link rel="stylesheet" href="student_style.css">
+    <style>   
+        .operations{
+            position: relative;
+        }
+        .operations{
+            padding-right:100px;
+            
+        }
+        .operations select{
+            height: 35px;
+            width:200px;
+        }
+        .btn{
+            border: 2px solid grey;
+            border-radius: 29px;
+            margin: 7px auto;
+            width: 86px;
+            font-size: 15px;
+            padding: 10px;
+            background: none;
+            font-family: 'Ubuntu', sans-serif;
+            outline: none;
+
+        }
+        .btn:hover{
+            cursor: pointer;
+            background-color: burlywood;
+        }
+    </style>
+</head>
+<body>
+    <header>  
+            <div class="logo"><img src="logo.png"></div>   
+            <div class="text"><h1> E-Library </h1></div>  
+            <div class="dummies">
+                <ul>
+                    <li><a href="studentLogin.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+    </header>    
+    <main>
+        <div class="bg">
+            <img src="inside.png" class="bg">
+        </div>
+        <div class="operations">
+        	<br>
+            <h2> Enter the Details </h2>
+            <br>
+            <form method="post" action="./StudentController/updatestudent" >
+                <br>
+                Student Id: <input type="text" name="student_id" placeholder="Student Id..."><br><br>
+                Student Name: <input type="text" name="student_name" placeholder="Student Name..."><br><br>
+                Student Department: <input type="text" name="student_department" placeholder="Student Department.."><br><br>
+                Student Year: <input type="text" name="student_year" placeholder="Student Current Year..."><br><br>
+                Student Course: <input type="text" name="student_course" placeholder="Student Course..."><br><br>
+                Student PhoneNo: <input type="text" name="student_phone" placeholder="Student Phone no..."><br><br>
+                Student Email: <input type="text" name="student_email" placeholder="Student Email...."><br><br>
+                Student Password: <input type="text" name="student_password" placeholder="Student Password..."><br>
+                <input type="submit" value="Update" class="btn">
+            </form>
+        </div>
+    </main>
+    <footer>All Rights Reserved &copy; By E-Library.com</footer>    
+</body>
+</html>
