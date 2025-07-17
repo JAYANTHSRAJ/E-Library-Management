@@ -1,7 +1,7 @@
 package in.ineuron.controller;
 
 import java.io.IOException;
-import java.sql.ResultSet;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +17,6 @@ import in.ineuron.servicefactory.BookServiceFactory;
 @WebServlet("/BookController/*")
 public class BookController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    ResultSet rs = null;
-    BookDto book = null;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doProcess(request, response);
@@ -32,34 +30,34 @@ public class BookController extends HttpServlet {
         IBookService bookservice = BookServiceFactory.getbookservice();
 
         if (request.getRequestURI().endsWith("searchbyauthor")) {
-            book = new BookDto();
             String authorname = request.getParameter("book_author");
-            book = bookservice.searchbookbyauthor(authorname);
-            request.setAttribute("book", book);
+            List<BookDto> books = bookservice.searchBooksByAuthor(authorname);
+            request.setAttribute("books", books);
             RequestDispatcher rd = request.getRequestDispatcher("../displaybookbyauthor.jsp");
             rd.forward(request, response);
         }
 
         if (request.getRequestURI().endsWith("searchbyname")) {
-            book = new BookDto();
             String bookname = request.getParameter("book_name");
-            book = bookservice.searchbookbyname(bookname);
-            request.setAttribute("book", book);
+            List<BookDto> books = bookservice.searchbookbyname(bookname);
+            request.setAttribute("books", books);
             RequestDispatcher rd = request.getRequestDispatcher("../displaybookbyauthor.jsp");
             rd.forward(request, response);
         }
 
         if (request.getRequestURI().endsWith("searchbygenre")) {
-            book = new BookDto();
-            String genrename = request.getParameter("genre_name");
-            book = bookservice.searchbookbygenre(genrename);
-            request.setAttribute("book", book);
+            String genrename = request.getParameter("book_genre");
+            System.out.println("Genre received: " + genrename);
+            List<BookDto> books = bookservice.searchbookbygenre(genrename);
+            request.setAttribute("books", books);
             RequestDispatcher rd = request.getRequestDispatcher("../displaybookbyauthor.jsp");
             rd.forward(request, response);
+            System.out.println("Genre received: " + genrename);
+
         }
 
         if (request.getRequestURI().endsWith("addbook")) {
-            book = new BookDto();
+            BookDto book = new BookDto();
 
             String idStr = request.getParameter("book_id");
             String quantityStr = request.getParameter("book_quantity");
@@ -89,7 +87,7 @@ public class BookController extends HttpServlet {
         }
 
         if (request.getRequestURI().endsWith("updatebook")) {
-            book = new BookDto();
+            BookDto book = new BookDto();
 
             String idStr = request.getParameter("book_id");
             String quantityStr = request.getParameter("book_quantity");

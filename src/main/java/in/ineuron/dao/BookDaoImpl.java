@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import in.ineuron.dto.BookDto;
 import in.ineuron.util.JdbcUtil;
@@ -71,111 +73,93 @@ public class BookDaoImpl implements IBookDao {
 	}
 
 	@Override
-	public BookDto searchbookbyauthor(String bookAuthor) {
+	public List<BookDto> searchbookbyauthor(String bookAuthor) {
+	    List<BookDto> bookList = new ArrayList<>();
+	    try {
+	        connection = JdbcUtil.getJdbcConnection();
+	        String sql = "SELECT * FROM bookdb WHERE bookAuthor=?";
+	        pstmt = connection.prepareStatement(sql);
+	        pstmt.setString(1, bookAuthor);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            BookDto book = new BookDto();
+	            book.setBookId(rs.getInt("bookId"));
+	            book.setBookName(rs.getString("bookName"));
+	            book.setBookAuthor(rs.getString("bookAuthor"));
+	            book.setBookGenre(rs.getString("bookGenre"));
+	            book.setBookQuantity(rs.getInt("bookQuantity"));
+	            bookList.add(book);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        JdbcUtil.closeConnection(connection);
+	        JdbcUtil.closeResultSet(rs);
+	        JdbcUtil.closeStatement(pstmt);
+	    }
+	    return bookList;
+	}
+
 	
-		try {
-			
-			connection = JdbcUtil.getJdbcConnection();
-			String sqlSearchQuery = "select bookId,bookName,bookAuthor,bookGenre from bookdb where bookAuthor=?";
-			if(connection != null) {
-				pstmt = connection.prepareStatement(sqlSearchQuery);
-				pstmt.setString(1, bookAuthor);
-				if(pstmt != null) {
-					rs = pstmt.executeQuery();
-					if(rs != null) {
-						if(rs.next()) {
-							book = new BookDto();
-							book.setBookId(rs.getInt(1));
-							book.setBookName(rs.getString(2));
-							book.setBookAuthor(rs.getString(3));
-							book.setBookGenre(rs.getString(4));
-							return book;
-						}
-					}
-					else {
-						return null;
-					}
-					
-				}
-				
-				
-			}
-		} catch (Exception e) {
-			
-			e.printStackTrace();
+		@Override
+		public List<BookDto> searchbookbyname(String bookName) {
+		    List<BookDto> bookList = new ArrayList<>();
+		    try {
+		        connection = JdbcUtil.getJdbcConnection();
+		        String sql = "SELECT * FROM bookdb WHERE bookName=?";
+		        pstmt = connection.prepareStatement(sql);
+		        pstmt.setString(1, bookName);
+		        rs = pstmt.executeQuery();
+		        while (rs.next()) {
+		            BookDto book = new BookDto();
+		            book.setBookId(rs.getInt("bookId"));
+		            book.setBookName(rs.getString("bookName"));
+		            book.setBookAuthor(rs.getString("bookAuthor"));
+		            book.setBookGenre(rs.getString("bookGenre"));
+		            book.setBookQuantity(rs.getInt("bookQuantity"));
+		            bookList.add(book);
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        JdbcUtil.closeConnection(connection);
+		        JdbcUtil.closeResultSet(rs);
+		        JdbcUtil.closeStatement(pstmt);
+		    }
+		    return bookList;
 		}
-		return null;
-	}
 
-	@Override
-	public BookDto searchbookbyname(String bookName) {
+	
 		
-		try {
-			connection = JdbcUtil.getJdbcConnection();
-			String sqlSearchQuery = "select bookId,bookName,bookAuthor,bookGenre from bookdb where bookName=?";
-			if(connection != null) {
-				pstmt = connection.prepareStatement(sqlSearchQuery);
-				pstmt.setString(1, bookName);
-				if(pstmt != null) {
-					rs = pstmt.executeQuery();
-					if(rs != null) {
-						if(rs.next()) {
-							book = new BookDto();
-							book.setBookId(rs.getInt(1));
-							book.setBookName(rs.getString(2));
-							book.setBookAuthor(rs.getString(3));
-							book.setBookGenre(rs.getString(4));
-							return book;
-						}
-					}else {
-						return null;
-					}
-				}
-				
-				
+			@Override
+			public List<BookDto> searchbookbygenre(String bookGenre) {
+			    List<BookDto> bookList = new ArrayList<>();
+			    try {
+			        connection = JdbcUtil.getJdbcConnection();
+			        String sql = "SELECT * FROM bookdb WHERE bookGenre=?";
+			        pstmt = connection.prepareStatement(sql);
+			        pstmt.setString(1, bookGenre);
+			        rs = pstmt.executeQuery();
+			        while (rs.next()) {
+			            BookDto book = new BookDto();
+			            book.setBookId(rs.getInt("bookId"));
+			            book.setBookName(rs.getString("bookName"));
+			            book.setBookAuthor(rs.getString("bookAuthor"));
+			            book.setBookGenre(rs.getString("bookGenre"));
+			            book.setBookQuantity(rs.getInt("bookQuantity"));
+			            bookList.add(book);
+			        }
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			    } finally {
+			        JdbcUtil.closeConnection(connection);
+			        JdbcUtil.closeResultSet(rs);
+			        JdbcUtil.closeStatement(pstmt);
+			    }
+			    return bookList;
 			}
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		return null;
-	}
 
-	@Override
-	public BookDto searchbookbygenre(String bookGenre) {
 		
-		try {
-			connection = JdbcUtil.getJdbcConnection();
-			String sqlSearchQuery = "select bookId,bookName,bookAuthor,bookGenre from bookdb where bookGenre=?";
-			if(connection != null) {
-				pstmt = connection.prepareStatement(sqlSearchQuery);
-				pstmt.setString(1, bookGenre);
-				if(pstmt != null) {
-					rs = pstmt.executeQuery();
-					if(rs != null) {
-						if(rs.next()) {
-							book = new BookDto();
-							book.setBookId(rs.getInt(1));
-							book.setBookName(rs.getString(2));
-							book.setBookAuthor(rs.getString(3));
-							book.setBookGenre(rs.getString(4));
-							return book;
-						}
-					}else {
-						return null;
-					}
-					
-				}
-				
-				
-			}
-		} catch (Exception e) {
-		
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	@Override
 	public String updatebook(BookDto book){
 		

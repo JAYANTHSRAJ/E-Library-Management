@@ -1,12 +1,12 @@
 package in.ineuron.dao;
-
+import java.util.List;
 import in.ineuron.dto.BookDto;
 
 public interface IBookDao {
-	public String addbook(BookDto book);
-	public String deletebook(Integer bookId);
-	public BookDto searchbookbyauthor(String bookAuthor);
-	public BookDto searchbookbyname(String bookName);
-	public BookDto searchbookbygenre(String bookGenre);
-	public String updatebook(BookDto book);	
+    public String addbook(BookDto book);
+    public String deletebook(Integer bookId);
+    public List<BookDto> searchbookbyauthor(String bookAuthor);
+    public List<BookDto> searchbookbyname(String bookName);
+    public List<BookDto> searchbookbygenre(String bookGenre);
+    public String updatebook(BookDto book);    
 }

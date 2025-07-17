@@ -109,7 +109,21 @@ public class AdminController extends HttpServlet {
     private void handleRegistration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             AdminDto admin = new AdminDto();
-            admin.setAdminId(Integer.parseInt(request.getParameter("admin_id")));
+           // admin.setAdminId(Integer.parseInt(request.getParameter("admin_id")));
+            String adminIdStr = request.getParameter("admin_id");
+
+            if (adminIdStr != null && !adminIdStr.trim().isEmpty()) {
+                admin.setAdminId(Integer.parseInt(adminIdStr));
+            } else {
+                // Option 1: Throw error
+               // throw new IllegalArgumentException("Admin ID is required and must be a number.");
+
+                // Option 2 (alternative): Show custom error message to user
+                 request.setAttribute("errorMessage", "Admin ID cannot be empty");
+                 request.getRequestDispatcher("/errorPage.jsp").forward(request, response);
+                 return;
+            }
+
             admin.setAdminName(request.getParameter("admin_name"));
             admin.setAdminEmail(request.getParameter("admin_email"));
             admin.setAdminPassword(request.getParameter("admin_password"));

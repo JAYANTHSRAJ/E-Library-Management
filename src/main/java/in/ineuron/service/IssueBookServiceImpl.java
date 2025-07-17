@@ -13,26 +13,32 @@ public class IssueBookServiceImpl implements IIssueBookService {
 
     private IIssueBookDao issuedao;
 
+
+    // Constructor initializes DAO once
+    public IssueBookServiceImpl() {
+        this.issuedao = IssueDaoFactory.getissuebookdao();
+    }
+    
     @Override
     public String issuebook(IssueDto issue) {
-        issuedao = IssueDaoFactory.getissuebookdao();
+        //issuedao = IssueDaoFactory.getissuebookdao();
         return issuedao.issuebook(issue);
     }
 
     @Override
     public IssueDto returnbook(Integer bookId, Integer studentId) {
-        issuedao = IssueDaoFactory.getissuebookdao();
+       // issuedao = IssueDaoFactory.getissuebookdao();
         return issuedao.returnbook(bookId, studentId); // Corrected to match interface and DAO
     }
 
     @Override
     public String checkdue(Integer studentId) {
-        issuedao = IssueDaoFactory.getissuebookdao();
+     //   issuedao = IssueDaoFactory.getissuebookdao();
         return issuedao.checkDue(studentId);
     }
     @Override
     public List<IssueDto> fetchIssuedBooks(Integer studentId) {
-        IIssueBookDao dao = IssueDaoFactory.getissuebookdao();
-        return dao.fetchIssuedBooks(studentId);
+      //  IIssueBookDao dao = IssueDaoFactory.getissuebookdao();
+        return issuedao.fetchIssuedBooks(studentId);
     }
 }

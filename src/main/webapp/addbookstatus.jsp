@@ -70,11 +70,11 @@
 <body background="<%= request.getContextPath() %>/StudentSearch.jpg" style="background-repeat: no-repeat; background-size: cover;">
     <header>
         <div class="logo"><img src="<%= request.getContextPath() %>/logo.png" height="100px" width="100px"></div>
-        <div class="text"><h1> E-Library </h1> 
+        <div class="text"><h1> e-Library </h1> 
           <span>
-    <span style="padding-right: 15px;"><a href="<%= request.getContextPath() %>adminoperations.html" style="font-weight: normal; text-decoration: none; color: inherit;">Home</a></span>
-    <span style="padding-right: 15px;"><a href="#" style="font-weight: normal; text-decoration: none; color: inherit;">About</a></span>
-    <span><a href="#" style="font-weight: normal; text-decoration: none; color: inherit;">Contact Us</a></span>
+    <span style="padding-right: 15px;"><a href="<%= request.getContextPath() %>/adminoperations.html" style="font-weight: normal; text-decoration: none; color: inherit;">Home</a></span>
+    <span style="padding-right: 15px;"><a href="<%= request.getContextPath() %>/about.html" style="font-weight: normal; text-decoration: none; color: inherit;">About</a></span>
+    <span><a href="<%= request.getContextPath() %>/contactus.html" style="font-weight: normal; text-decoration: none; color: inherit;">Contact Us</a></span>
 </span>
                 
             

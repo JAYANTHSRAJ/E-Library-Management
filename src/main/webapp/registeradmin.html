@@ -39,12 +39,12 @@
 <body>
     <header>  
             <div class="logo"><img src="logo.png"></div>   
-            <div class="text"><h1> E-Library </h1></div>  
+            <div class="text"><h1> e-Library </h1></div>  
             <div class="dummies">
                 <ul>
-                    <li><a href="studentLogin.html">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="adminoperations.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
                 </ul>
             </div>
     </header>    
@@ -58,14 +58,14 @@
            <form method="post" action="AdminController/registeradmin">
 
                 <br>
-                Admin Id: <input type="text" name="admin_id" placeholder="Admin Id..."><br><br>
-                Admin Name: <input type="text" name="admin_name" placeholder="Admin Name..."><br><br>
-                Admin Email: <input type="text" name="admin_email" placeholder="Admin Email.."><br><br>
-                Admin Password: <input type="text" name="admin_password" placeholder="Admin Password..."><br>                
+                Admin Id: <input type="text" name="admin_id" placeholder="Admin Id..." required><br><br>
+                Admin Name: <input type="text" name="admin_name" placeholder="Admin Name..." required><br><br>
+                Admin Email: <input type="text" name="admin_email" placeholder="Admin Email.."required><br><br>
+                Admin Password: <input type="text" name="admin_password" placeholder="Admin Password..." required><br>                
                 <input type="submit" value="register" class="btn">
             </form>
         </div>
     </main>
-    <footer>All Rights Reserved &copy; By E-Library.com</footer>    
+    <footer>All Rights Reserved &copy; By e-Library.com</footer>    
 </body>
 </html>

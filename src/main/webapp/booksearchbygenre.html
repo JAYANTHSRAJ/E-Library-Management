@@ -11,9 +11,9 @@
             <div class="text"><h1> E-Library </h1></div>  
             <div class="dummies">
                 <ul>
-                    <li><a href="studentLogin.html">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="student_operations.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
                 </ul>
             </div>
     </header>    
@@ -24,13 +24,14 @@
         <div class="operations">
             <h1> Enter the Details </h1>
             <br>
-            <form method="post" action="./BookController/searchbygenre" >
-                <br>
-                Book Genre: <input type="text" name="genre_name" placeholder="Book Genre...."><br>
-                <input type="submit" value="Issue" class="btn">
-            </form>
+            <form method="post" action="./BookController/searchbygenre">
+    <br>
+    Book Genre: <input type="text" name="book_genre" placeholder="Book Genre...."><br>
+    <input type="submit" value="Search" class="btn">
+</form>
+
         </div>
     </main>
-    <footer>All Rights Reserved &copy; By E-Library.com</footer>
+    <footer>All Rights Reserved &copy; By e-Library.com</footer>
 </body>
 </html>
