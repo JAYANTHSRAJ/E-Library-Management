@@ -7,6 +7,7 @@ public interface IStudentDao {
     StudentDto searchStudent(Integer studentId);
     String updateStudent(StudentDto student);
     String deleteStudent(Integer studentId);
+<<<<<<< HEAD
     // ✅ New method
     String saveStudentRequest(StudentDto student);
   
@@ -16,4 +17,6 @@ public interface IStudentDao {
 
     // Get student email by ID
     String getStudentEmailById(int studentId);
+=======
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
 }

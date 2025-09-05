@@ -2,9 +2,15 @@ package in.ineuron.service;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import in.ineuron.daofactory.BookDaoFactory;
 import in.ineuron.dto.BookDto;
 import in.ineuron.dto.IBookDao;
+=======
+import in.ineuron.dao.IBookDao;
+import in.ineuron.daofactory.BookDaoFactory;
+import in.ineuron.dto.BookDto;
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
 import in.ineuron.servicefactory.*;
 
 public class BookServiceImpl implements IBookService {

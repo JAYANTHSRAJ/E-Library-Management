@@ -4,10 +4,15 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+=======
+
+
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +20,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.ineuron.dto.AdminDto;
+<<<<<<< HEAD
 import in.ineuron.dto.StudentDto;
 import in.ineuron.service.IAdminService;
 import in.ineuron.servicefactory.AdminServiceFactory;
 import in.ineuron.util.EmailUtil;
+=======
+import in.ineuron.service.IAdminService;
+import in.ineuron.servicefactory.AdminServiceFactory;
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
 import in.ineuron.util.JdbcUtil;
 
 @WebServlet("/AdminController/*")
@@ -27,6 +37,7 @@ public class AdminController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final IAdminService adminService = AdminServiceFactory.getadminservice();
 
+<<<<<<< HEAD
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,10 +52,22 @@ public class AdminController extends HttpServlet {
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+=======
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doProcess(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doProcess(request, response);
+    }
+
+    private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
         String uri = request.getRequestURI();
 
         if (uri.endsWith("AdminLogin")) {
             handleLogin(request, response);
+<<<<<<< HEAD
 
         } else if (uri.endsWith("registeradmin")) {
             handleRegistration(request, response);
@@ -69,6 +92,25 @@ public class AdminController extends HttpServlet {
 
         if (adminId == null || adminEmail == null || adminPassword == null ||
                 adminId.trim().isEmpty() || adminEmail.trim().isEmpty() || adminPassword.trim().isEmpty()) {
+=======
+        } else if (uri.endsWith("registeradmin")) {
+            handleRegistration(request, response);
+        }
+    }
+
+    private void handleLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String adminId = request.getParameter("admin_Id");
+    	String adminEmail = request.getParameter("admin_email");
+    	String adminPassword = request.getParameter("admin_password");
+
+        System.out.println(">>> Input Data >>>");
+        System.out.println("Admin ID: " + adminId);
+        System.out.println("Admin Email: " + adminEmail);
+        System.out.println("Admin Password: " + adminPassword);
+
+        if (adminId == null || adminEmail == null || adminPassword == null ||
+        		adminId.trim().isEmpty() || adminEmail.trim().isEmpty() || adminPassword.trim().isEmpty()) {
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
             request.setAttribute("errorMessage", "All login fields are required.");
             request.getRequestDispatcher("../adminVerificationFail.jsp").forward(request, response);
             return;
@@ -76,6 +118,10 @@ public class AdminController extends HttpServlet {
 
         try (Connection connection = JdbcUtil.getJdbcConnection()) {
             if (connection == null) {
+<<<<<<< HEAD
+=======
+                System.out.println("Database connection is null!");
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
                 request.setAttribute("errorMessage", "Database connection error.");
                 request.getRequestDispatcher("../adminVerificationFail.jsp").forward(request, response);
                 return;
@@ -89,14 +135,36 @@ public class AdminController extends HttpServlet {
                         String storedEmail = rs.getString("adminEmail");
                         String storedPassword = rs.getString("adminPassword");
 
+<<<<<<< HEAD
                         if (adminEmail.trim().equalsIgnoreCase(storedEmail.trim()) &&
                                 adminPassword.trim().equals(storedPassword.trim())) {
                             response.sendRedirect("../adminoperations.html");
                         } else {
+=======
+                        System.out.println(">>> DB Data >>>");
+                        System.out.println("Stored Email: " + storedEmail);
+                        System.out.println("Stored Password: " + storedPassword);
+
+                       
+                        adminEmail = adminEmail.trim();
+                        adminPassword = adminPassword.trim();
+
+                        if (adminEmail.equalsIgnoreCase(storedEmail.trim()) &&
+                            adminPassword.equals(storedPassword.trim())) {
+                         
+                            System.out.println("Login successful!");
+                            response.sendRedirect("../adminoperations.html");
+                        } else {
+                            System.out.println("Invalid credentials.");
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
                             request.setAttribute("errorMessage", "Invalid email or password.");
                             request.getRequestDispatcher("../adminVerificationFail.jsp").forward(request, response);
                         }
                     } else {
+<<<<<<< HEAD
+=======
+                        System.out.println("Admin ID not found.");
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
                         request.setAttribute("errorMessage", "Admin ID not found.");
                         request.getRequestDispatcher("../adminVerificationFail.jsp").forward(request, response);
                     }
@@ -109,19 +177,36 @@ public class AdminController extends HttpServlet {
         }
     }
 
+<<<<<<< HEAD
     // ----------------- REGISTRATION -----------------
     private void handleRegistration(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             AdminDto admin = new AdminDto();
+=======
+    private void handleRegistration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            AdminDto admin = new AdminDto();
+           // admin.setAdminId(Integer.parseInt(request.getParameter("admin_id")));
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
             String adminIdStr = request.getParameter("admin_id");
 
             if (adminIdStr != null && !adminIdStr.trim().isEmpty()) {
                 admin.setAdminId(Integer.parseInt(adminIdStr));
             } else {
+<<<<<<< HEAD
                 request.setAttribute("errorMessage", "Admin ID cannot be empty");
                 request.getRequestDispatcher("/errorPage.jsp").forward(request, response);
                 return;
+=======
+                // Option 1: Throw error
+               // throw new IllegalArgumentException("Admin ID is required and must be a number.");
+
+                // Option 2 (alternative): Show custom error message to user
+                 request.setAttribute("errorMessage", "Admin ID cannot be empty");
+                 request.getRequestDispatcher("/errorPage.jsp").forward(request, response);
+                 return;
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
             }
 
             admin.setAdminName(request.getParameter("admin_name"));
@@ -138,6 +223,7 @@ public class AdminController extends HttpServlet {
             request.getRequestDispatcher("../registeradminstatus.jsp").forward(request, response);
         }
     }
+<<<<<<< HEAD
 
     // ----------------- VIEW PENDING STUDENT REQUESTS -----------------
     private void handleViewPendingRequests(HttpServletRequest request, HttpServletResponse response)
@@ -264,4 +350,6 @@ public class AdminController extends HttpServlet {
 
         response.sendRedirect(request.getContextPath() + "/AdminController/viewPendingRequests");
     }
+=======
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
 }

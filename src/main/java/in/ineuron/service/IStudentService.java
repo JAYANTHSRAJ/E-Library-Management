@@ -7,6 +7,7 @@ public interface IStudentService {
     StudentDto searchStudent(Integer studentId);
     String deleteStudent(Integer studentId);
     String updateStudent(StudentDto student);
+<<<<<<< HEAD
 
     // ✅ New method for student request
     String saveStudentRequest(StudentDto student);
@@ -16,4 +17,6 @@ public interface IStudentService {
     String changePassword(Integer studentId, String oldPassword, String newPassword) throws Exception;
 
     String getStudentEmailById(Integer studentId);
+=======
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
 }

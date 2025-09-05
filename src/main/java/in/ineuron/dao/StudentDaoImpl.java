@@ -10,6 +10,7 @@ import in.ineuron.util.JdbcUtil;
 
 public class StudentDaoImpl implements IStudentDao {
 
+<<<<<<< HEAD
     // Insert student into student_request table with default status = 'PENDING'
     @Override
     public String addStudent(StudentDto student) {
@@ -21,6 +22,15 @@ public class StudentDaoImpl implements IStudentDao {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
         	  ps.setString(1, student.getStudentId());
+=======
+    @Override
+    public String addStudent(StudentDto student) {
+        String sql = "INSERT INTO studentdb (studentId, studentName, studentDepartment, studentYear, studentCourse, studentPhoneno, studentEmailId, studentPassword) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = JdbcUtil.getJdbcConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, student.getStudentId());
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
             ps.setString(2, student.getStudentName());
             ps.setString(3, student.getStudentDepartment());
             ps.setInt(4, student.getStudentYear());
@@ -31,8 +41,13 @@ public class StudentDaoImpl implements IStudentDao {
 
             int rows = ps.executeUpdate();
             return rows > 0
+<<<<<<< HEAD
                 ? "Student request submitted successfully. Awaiting admin approval."
                 : "Failed to submit student request.";
+=======
+                ? "Student added successfully."
+                : "Failed to add student. Check ID/email uniqueness.";
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -40,12 +55,18 @@ public class StudentDaoImpl implements IStudentDao {
         }
     }
 
+<<<<<<< HEAD
     // Search student from studentdb (only approved students)
     @Override
     public StudentDto searchStudent(Integer studentId) {
         String sql = "SELECT studentId, studentName, studentDepartment, studentYear, " +
                      "studentCourse, studentPhoneno, studentEmailId, studentPassword " +
                      "FROM studentdb WHERE studentId=?";
+=======
+    @Override
+    public StudentDto searchStudent(Integer studentId) {
+        String sql = "SELECT StudentId, StudentName, StudentDepartment, StudentYear, StudentCourse, StudentPhoneno, StudentEmailId FROM studentdb WHERE StudentId=?";
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
         try (Connection conn = JdbcUtil.getJdbcConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -53,14 +74,21 @@ public class StudentDaoImpl implements IStudentDao {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     StudentDto s = new StudentDto();
+<<<<<<< HEAD
                     s.setStudentId(rs.getString(1));
+=======
+                    s.setStudentId(rs.getInt(1));
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
                     s.setStudentName(rs.getString(2));
                     s.setStudentDepartment(rs.getString(3));
                     s.setStudentYear(rs.getInt(4));
                     s.setStudentCourse(rs.getString(5));
                     s.setStudentPhoneno(rs.getString(6));
                     s.setStudentEmail(rs.getString(7));
+<<<<<<< HEAD
                     s.setStudentPassword(rs.getString(8));
+=======
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
                     return s;
                 }
             }
@@ -70,12 +98,18 @@ public class StudentDaoImpl implements IStudentDao {
         return null;
     }
 
+<<<<<<< HEAD
     // Update student info in studentdb (not in requests)
     @Override
     public String updateStudent(StudentDto student) {
         String sql = "UPDATE studentdb SET studentName=?, studentEmailId=?, studentYear=?, " +
                      "studentDepartment=?, studentCourse=?, studentPhoneno=?, studentPassword=? " +
                      "WHERE studentId=?";
+=======
+    @Override
+    public String updateStudent(StudentDto student) {
+        String sql = "UPDATE studentdb SET StudentName=?, StudentEmailId=?, StudentYear=?, StudentDepartment=?, StudentCourse=?, StudentPhoneno=?, StudentPassword=? WHERE StudentId=?";
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
         try (Connection conn = JdbcUtil.getJdbcConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -86,8 +120,13 @@ public class StudentDaoImpl implements IStudentDao {
             ps.setString(5, student.getStudentCourse());
             ps.setString(6, student.getStudentPhoneno());
             ps.setString(7, student.getStudentPassword());
+<<<<<<< HEAD
             ps.setString(8, student.getStudentId());
             
+=======
+            ps.setInt(8, student.getStudentId());
+
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
             int rows = ps.executeUpdate();
             return rows > 0 ? "Student updated successfully." : "Student not found.";
 
@@ -96,12 +135,20 @@ public class StudentDaoImpl implements IStudentDao {
             return "Error occurred during update.";
         }
     }
+<<<<<<< HEAD
 
     // Delete student only if no unreturned books
     @Override
     public String deleteStudent(Integer studentId) {
         String checkSql =
           "SELECT COUNT(*) FROM issuedb WHERE studentId = ? AND returnStatus IS NULL";
+=======
+    @Override
+    public String deleteStudent(Integer studentId) {
+        String checkSql =
+          "SELECT COUNT(*) FROM issuedb " +
+          "WHERE studentId = ? AND returnStatus IS NULL";
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
         String deleteIssuedSql =
           "DELETE FROM issuedb WHERE studentId = ?";
         String deleteStudentSql =
@@ -128,14 +175,22 @@ public class StudentDaoImpl implements IStudentDao {
             try (PreparedStatement ps = conn.prepareStatement(deleteStudentSql)) {
                 ps.setInt(1, studentId);
                 int rows = ps.executeUpdate();
+<<<<<<< HEAD
                 return rows > 0 ? "Student deleted successfully." : "Student not found.";
             }
 
+=======
+                return rows > 0
+                    ? "Student deleted successfully."
+                    : "Student not found.";
+            }
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
         } catch (SQLException e) {
             e.printStackTrace();
             return "Error occurred during deletion.";
         }
     }
+<<<<<<< HEAD
    
     @Override
     public String saveStudentRequest(StudentDto student) {
@@ -245,3 +300,7 @@ public class StudentDaoImpl implements IStudentDao {
 
 	
 }
+=======
+
+}
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8

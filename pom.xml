@@ -10,8 +10,11 @@
     <packaging>war</packaging>
 
     <dependencies>
+<<<<<<< HEAD
    
 
+=======
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
         <!-- Servlet API dependency for working with servlets -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -35,6 +38,7 @@
             <version>5.7.2</version>
             <scope>test</scope>
         </dependency>
+<<<<<<< HEAD
         
 <!-- JavaMail (javax.mail) -->
 <dependency>
@@ -52,6 +56,8 @@
 
 
  
+=======
+>>>>>>> 07de3710b1c3653f00f6f54cc55c7df5fae080e8
     </dependencies>
 
     <build>
