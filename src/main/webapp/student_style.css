@@ -1,0 +1,101 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Bad+Script&display=swap');
+*{
+    margin: 0;
+    padding: 0;  
+}
+.text{
+    width: 60%;
+}
+.dummies ul{
+    display: flex;
+   
+}
+.bg{
+    width: 100%;
+}
+.dummies ul li{
+    list-style: none;
+    padding: 60px 0px 0px 30px;
+}
+.dummies ul li a{
+    font-size: large;
+    color: black;
+    text-decoration: none;
+}
+.dummies ul li a:hover{
+    color: burlywood;
+
+
+}
+.logo img{
+    height: 135px;
+    width: 135px;
+    padding-left: 100px;
+    padding-bottom: 500px;
+}
+header{
+    display: flex;
+    height: 15vh;
+    background-color: white;
+}
+h1{
+    font-family: "Source Sans Pro", sans-serif;
+    color: black;
+    padding-top: 57px;
+}
+footer{
+    padding-top : 9px;
+    height: 5vh;
+    background-color: black;
+    color:white;
+    text-align: center;
+}
+.box{
+    position: absolute;
+    height:350px;
+    width: 350px;
+    background-color: transparent;
+    border: 2px solid black;
+    margin-top: 65px;
+    margin-left: 160px;
+    border-radius: 20px;
+}
+.box form{
+    padding-left: 25px;
+}
+.box form p a{
+    
+    text-decoration: none;
+}
+.form-input{
+    margin: 0px 6px;
+    padding: 3px 6px;
+    border: 1px solid black;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Ubuntu', sans-serif;
+    width: 52%;
+    outline: none;
+}
+
+.btn{
+    border: 2px solid grey;
+    border-radius: 29px;
+    margin: 7px auto;
+    width: 86px;
+    font-size: 15px;
+    padding: 10px;
+    background: none;
+    font-family: 'Ubuntu', sans-serif;
+    outline: none;
+
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: burlywood;
+}
+main{
+    display: flex;
+}
